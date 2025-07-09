@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Phone, ExternalLink, Star, GitFork, Download, Menu, X } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, ExternalLink, Star, GitFork, Download, Menu, X, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -70,6 +69,29 @@ const Portfolio = () => {
     }
   ];
 
+  const education = [
+    {
+      degree: 'BTech Computer Science and Engineering',
+      institution: 'VIT Bhopal University',
+      type: 'Bachelor\'s Degree',
+      icon: '🎓'
+    },
+    {
+      degree: '12th Grade',
+      institution: 'Sun Valley International School',
+      type: 'Higher Secondary',
+      percentage: '90%',
+      icon: '📚'
+    },
+    {
+      degree: '10th Grade',
+      institution: 'Secondary Education',
+      type: 'Secondary',
+      percentage: '92%',
+      icon: '📖'
+    }
+  ];
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
@@ -95,7 +117,7 @@ const Portfolio = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item) => (
+              {['Home', 'About', 'Education', 'Skills', 'Projects', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -118,7 +140,7 @@ const Portfolio = () => {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-gray-700">
-              {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item) => (
+              {['Home', 'About', 'Education', 'Skills', 'Projects', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -198,6 +220,42 @@ const Portfolio = () => {
                 AS
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Education
+          </h2>
+          <div className="space-y-8">
+            {education.map((edu, index) => (
+              <Card key={index} className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-all duration-300">
+                <CardHeader>
+                  <div className="flex items-start gap-4">
+                    <div className="text-3xl">{edu.icon}</div>
+                    <div className="flex-1">
+                      <CardTitle className="text-white text-xl mb-2">{edu.degree}</CardTitle>
+                      <CardDescription className="text-gray-300 text-lg">
+                        {edu.institution}
+                      </CardDescription>
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        <Badge variant="secondary" className="text-sm">
+                          {edu.type}
+                        </Badge>
+                        {edu.percentage && (
+                          <Badge className="bg-green-600 text-white text-sm">
+                            {edu.percentage}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </CardHeader>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
